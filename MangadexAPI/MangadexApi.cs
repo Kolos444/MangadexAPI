@@ -26,9 +26,7 @@ public class MangadexAPI{
 	/// </summary>
 	private static void setTokenAuth(Account account) {
 		if (account != null)
-			client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", account.token);
-		else
-			accountLogin();
+			client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", account.token?.session);
 	}
 	/// <summary>
 	/// Setzt denn Http Header für standard Anfragen
@@ -37,13 +35,6 @@ public class MangadexAPI{
 		client.DefaultRequestHeaders.Accept.Clear();
 		client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 		client.DefaultRequestHeaders.Add("User-Agent", ".NET Foundation Repository Reporter");
-	}
-
-	/// <summary>
-	/// Nutzer soll sich einloggen
-	/// </summary>
-	private static void accountLogin() {
-		throw new NotImplementedException();
 	}
 
 	/// <summary>
@@ -84,7 +75,7 @@ public class MangadexAPI{
 	/// </summary>
 	/// <param name="account">Der Account desen Token besorgt werden soll</param>
 	/// <returns>Den aktiven string Token</returns>
-	private static async Task<APIRequest?> authLogin(Account account) {
+	public static async Task<APIRequest?> login(Account account) {
 		AuthPost authPost = new() { username = account?.username, password = account?.password };
 
 		StringContent payload = new(JsonSerializer.Serialize(authPost), Encoding.UTF8, "application/json");

@@ -3,7 +3,7 @@
 /// <summary>
 /// Speichert die Daten eines Accounts
 /// </summary>
-internal class Account{
+public class Account{
 	
 	/// <summary>
 	/// Nutzername des Accounts
@@ -16,7 +16,7 @@ internal class Account{
 	/// <summary>
 	/// Der derzeitige Token des Accounts
 	/// </summary>
-	public string? token    { get; set; }
+	public Token? token { get; set; }
 
 
 	/// <summary>
@@ -25,7 +25,7 @@ internal class Account{
 	/// <param name="username">Nutzername des Accounts als string</param>
 	/// <param name="password">Passwort des Accounts als string</param>
 	/// <param name="token">Der derzeitige Token des Accounts als string ist optional</param>
-	public Account(string? username, string? password, string? token = null) {
+	public Account(string? username, string? password, Token? token = null) {
 		this.username = username;
 		this.password = password;
 		this.token    = token;
